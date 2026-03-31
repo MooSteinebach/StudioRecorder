@@ -1,0 +1,130 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the 'StudioRecorder' package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: 'StudioRecorder' '26.1'\n"
+"Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
+"POT-Creation-Date: 2026-03-31 14:20+0200\n"
+"PO-Revision-Date: 2026-03-31 14:56+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de_DE@formal\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.9\n"
+
+#: addon\appModules\sr.py:24
+msgid "No documents open"
+msgstr "kein Dokument geöffnet."
+
+#. cosmetic
+#: addon\appModules\sr.py:39
+msgid "s"
+msgstr "s"
+
+#: addon\appModules\sr.py:40
+msgid "p"
+msgstr "p"
+
+#: addon\appModules\sr.py:41
+msgid "rec over"
+msgstr "A ÜB"
+
+#: addon\appModules\sr.py:42
+msgid "rec ins"
+msgstr "A Einfg"
+
+#: addon\appModules\sr.py:87
+msgid "Deletes all audio to the beginning"
+msgstr "löscht Audio bis zum Anfang"
+
+#. to release control, because gesture includes control
+#. open edit menu
+#. delete to beginning
+#: addon\appModules\sr.py:94
+msgid "Deleted to beginning!"
+msgstr "bis zum Anfang gelöscht."
+
+#: addon\appModules\sr.py:97
+msgid "Deletes all audio to the end"
+msgstr "löscht alles bis zum Ende."
+
+#. to release alt, because gesture includes alt
+#. open edit menu
+#. delete to end
+#: addon\appModules\sr.py:104
+msgid "Deleted to end!"
+msgstr "bis zum Ende gelöscht."
+
+#: addon\appModules\sr.py:107
+msgid "Mark start of selection"
+msgstr "markiert den Anfang der Auswahl"
+
+#: addon\appModules\sr.py:124
+msgid "Mark end of selection"
+msgstr "markiert das Ende der Auswahl"
+
+#: addon\appModules\sr.py:135
+msgid "Set end of selection."
+msgstr "Ende der Auswahl gesetzt."
+
+#: addon\appModules\sr.py:138
+msgid "fade in"
+msgstr "einblenden"
+
+#: addon\appModules\sr.py:151
+msgid "faded in."
+msgstr "eingeblendet"
+
+#: addon\appModules\sr.py:154
+msgid "fade out"
+msgstr "ausblenden"
+
+#: addon\appModules\sr.py:167
+msgid "faded out."
+msgstr "ausgeblendet"
+
+#: addon\appModules\sr.py:170
+msgid "normalize all audio"
+msgstr "alles normalisieren"
+
+#: addon\appModules\sr.py:183
+msgid "normalized."
+msgstr "normalisiert"
+
+#: addon\appModules\sr.py:187
+msgid "do not speak while using arrow keys"
+msgstr ""
+
+#. Add-on summary/title, usually the user visible name of the add-on
+#. Translators: Summary/title for this add-on
+#. to be shown on installation and add-on information found in add-on store
+#: buildVars.py:21
+msgid "Studio Recorder"
+msgstr "Studio Recorder"
+
+#. Add-on description
+#. Translators: Long description to be shown for this add-on on add-on information from add-on store
+#: buildVars.py:24
+msgid ""
+"Adds braille support to Studio Recorder.\n"
+"Also a few keystrokes are implemented\n"
+"to ease common tasks which do not have shortcuts."
+msgstr ""
+"Fügt Braille-Unterstützung hinzu.\n"
+"Ebenso werden einige Tastenkombinationen eingeführt,\n"
+"um Aufgaben, die keine Tastenkombination haben, zu vereinfachen."
+
+#. Brief changelog for this version
+#. Translators: what's new content for the add-on version to be shown in the add-on store
+#: buildVars.py:31
+msgid "Initial release."
+msgstr "Erste Version"
+
+#~ msgid "set start of selection."
+#~ msgstr "Anfang der Auswahl gesetzt."
