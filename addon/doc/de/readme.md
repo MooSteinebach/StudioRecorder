@@ -11,7 +11,7 @@ Mehr zu diesem Programm, inklusive des Download-Links,
 gibt es, auf englisch, [hier](https://www.aph.org/product/studio-recorder-software-digital-download/)
 Das Nutzerhandbuch, in englischer Sprache, können Sie 
 [hier](https://tech.aph.org/sr_doc.htm)
-herunterladen.
+ansehen.
 
 ## was bietet dieses addOn?
 
@@ -60,11 +60,11 @@ bereitgestellt wurde.
 Die folgenden Tastenkombinationen werden vom addOn bereitgestellt:
 
 - STRG+ENTF:  
-    Löscht alles von der aktuellen cursor position bis zum Anfang.
+    Löscht alles von der aktuellen Cursorposition bis zum Anfang.
 - ALT+ENTF:  
     Löscht alles von der aktuellen Cursorposition bis zum Ende.
 - j:  
-    Anfang der Auswahl setzen.
+    Anfang der Auswahl setzen.  
     Für diese Funktion verwendet "Studio Recorder" standardmäßig die 
     eckigen Klammern. Diese sind auf einer
     Deutschen Tastatur aber nicht ohne Weiteres zugänglich.
@@ -79,15 +79,15 @@ Die folgenden Tastenkombinationen werden vom addOn bereitgestellt:
 - STRG+k:  
     zum Ende der Auswahl gehen.
 - i:  
-    Einblenden.
+    Einblenden.  
     Markiert alles von der aktuellen Position
     bis zum Anfang und führt danach das Einblenden aus.
 - o:  
-    Ausblenden.
+    Ausblenden.  
     Markiert alles von der aktuellen Position
     bis zum Ende und führt danach das Ausblenden aus.
 - n:  
-    normalisieren.
+    normalisieren.  
     Markiert das gesamte Dokument und führt die
     Normalisierung aus.
 

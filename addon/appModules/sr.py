@@ -15,7 +15,7 @@ import speech
 import config
 import wx
 
-# addonHandler.initTranslation()
+addonHandler.initTranslation()
 
 # for making the single letter scripts work when the script key is pressed two times.
 gbTaskTimer = None
@@ -246,7 +246,7 @@ class AppModule(appModuleHandler.AppModule):
       _("normalized."))
 
   @script(
-    description=_("entfernen"),
+    description=_("delete"),
     gesture="kb:delete"
   )
   def script_pressDelete(self, gesture):

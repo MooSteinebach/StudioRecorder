@@ -7,7 +7,7 @@ Marco Steinebach <studio@windyradio.de>
 
 "Studio Recorder", developed by the american printing house (APH), is an App to record and manipulate audio.
 More about this program including the download can be found [here](https://www.aph.org/product/studio-recorder-software-digital-download/)
-The users manual can be found [here](https://tech.aph.org/sr_doc.htm).
+The users manual can be viewed [here](https://tech.aph.org/sr_doc.htm).
 
 ## what does this addOn offer?
 
@@ -15,7 +15,7 @@ This addOn adds braille support as well as some additional keystrokes to ease th
 
 ## braille support
 
-If you have a braille display, the contents of the status bar is displayed on the brailledisplay while you are in the main window of "Studio Recorder".
+If you have a braille display, the content of the status bar is displayed on the brailledisplay while you are in the main window of "Studio Recorder".
 This makes it possible to see the current time while audio is played back
 and/or while you record new audio.
 So you can always keep track of your position within the audio material.
@@ -42,9 +42,9 @@ was originally designed for "Studio Recorder".
 
 The following shortcuts are added through the addOn.
 
-- CTRL+Delete  
+- CTRL+Delete:  
     delete all audio to the beginning
-- ALT+Delete  
+- ALT+Delete:  
     Delete all audio to the end
 - j:  
     set start of selection.  
