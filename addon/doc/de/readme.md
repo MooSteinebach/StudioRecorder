@@ -1,61 +1,112 @@
-# NVDA AddOn für den Studio Recorder
+# NVDA AddOn für den "Studio Recorder"
 
-## What is studio recorder?
+Author:  
+Marco Steinebach <studio@windyradio.de>
 
-Studio recorder, developed by the american printing house (APH) is an App to record and manipulate audio.
-More about this program including the download can be found [here](https://www.aph.org/product/studio-recorder-software-digital-download/)
+## Was ist "Studio Recorder"?
 
-## what does this addOn offer?
+"Studio Recorder", entwickelt von american printing house (APH), 
+ist ein Programm zum Aufnehmen und Bearbeiten von Audio.
+Mehr zu diesem Programm, inklusive des Download-Links, 
+gibt es, auf englisch, [hier](https://www.aph.org/product/studio-recorder-software-digital-download/)
+Das Nutzerhandbuch, in englischer Sprache, können Sie 
+[hier](https://tech.aph.org/sr_doc.htm)
+herunterladen.
 
-This addOn adds braille support as well as some additional keystrokes to ease the use of studio recorder.
+## was bietet dieses addOn?
 
-## braille support
-If you have a braille display the contents of the status bar is displayed on the brailledisplay while you are in the main window of studio recorder.
-This makes it possible to see the current time while audio is played back
-and/or while you record new audio.
-So you can always keep track of the time within the audio material.
+Dieses addOn fügt Braille-Unterstützung hinzu,
+sowie einige zusätzliche Tastenkombinationen, um die tägliche Arbeit mit
+"Studio Recorder" zu vereinfachen.
 
-The addOn displays all elements you have configured to be displayedin the status bar.
-In Studio Recorder's settings (CTRL+t) go to the TAB "Status Bar".
-Here you can tell Studio Recorder which elements you want tosee on the status bar.
-We recommend to check the following Items:
-- background progress
-- Message/status
-- current time
-- total time
-- selection length
+## Braille-Unterstützung
 
-and to uncheck all other items.
+Wenn Sie eine Braillezeile besitzen, wird alles,
+was auf der Statuszeile angezeigt wird,
+fortlaufend auf der Braillezeile dargestellt,
+während Sie sich im Hauptfenster von "Studio Recorder" befinden.
 
-## additional keyboard shortcuts
+Dies ermöglicht es, z.B. die aktuelle Zeit sofort nachzuvollziehen,
+während Audio abgespielt wird oder Sie eine Aufnahme machen.
 
-The following shortcuts are added through the addOn.
-If one of the single letter key strokes is also a 
-Studio Recorder command, just press it twice to perform the action which 
-originally designed for Studio Recorder.
+Das addOn zeigt genau das auf der Braillezeile an,
+was in den Einstellungen von "Studio Recorder"
+zur Anzeige für die Statuszeile ausgewählt wurde.
 
-- CTRL+Delete
-delete all audio to the beginning
+Öffnen Sie "Studio Recorder".  
+aktivieren Sie die Einstellungen mit STRG+t.  
+wechseln Sie auf die Registerkarte "Status bar" und wählen die Elemente aus,
+die auf der Braillezeile angezeigt werden sollen.
 
-- ALT+Delete
-Delete all audio to the end
+Wir empfehlen, die folgenden Elemente zu aktivieren:
 
-- j:
-set start of selection.
-The normal key to do this in Studio Recorder is the left bracket,
-but this key can't be used on non-english keyboards.
+- background progress (Hintergrundaktivität)
+- Message/status (Ereignisse und aktueller Status)
+- current time (aktuelle zeit)
+- total time (Gesamtzeit)
+- selection length (Länge der Auswahl)
 
-- k:
-set end of selection
+und alle anderen Einträge abzuwählen.
 
-- i:
-fade in.
-This keystroke marks all audio to the beginning and performs a fade in.
+## zusätzliche Tastenkombinationen
 
-- o:
-fade out
-This keystroke marks all audio to the end and performs a fade out.
+Anmerkung zu den Tastenkombinationen, welche nur aus
+einem Buchstaben bestehen, z.B. j.
+Wenn eine dieser Tastenkombinationen auch von "Studio Recorder"
+benutzt wird, drücken Sie die Taste zwei mal schnell,
+um die Funktion auszuführen, die vom "Studio Recorder" selbst
+bereitgestellt wurde.
 
-- n:
-normalize all audio
-This keystroke marks all audio and performs a normalize.
+Die folgenden Tastenkombinationen werden vom addOn bereitgestellt:
+
+- STRG+ENTF:  
+    Löscht alles von der aktuellen cursor position bis zum Anfang.
+- ALT+ENTF:  
+    Löscht alles von der aktuellen Cursorposition bis zum Ende.
+- j:  
+    Anfang der Auswahl setzen.
+    Für diese Funktion verwendet "Studio Recorder" standardmäßig die 
+    eckigen Klammern. Diese sind auf einer
+    Deutschen Tastatur aber nicht ohne Weiteres zugänglich.
+- k:  
+    Ende der Auswahl setzen.
+- Umschalt+j:  
+    bis zum Anfang auswählen.
+- Umschalt+k:  
+    bis zum Ende auswählen.
+- STRG+j:  
+    zum Anfang der Auswahl gehen.
+- STRG+k:  
+    zum Ende der Auswahl gehen.
+- i:  
+    Einblenden.
+    Markiert alles von der aktuellen Position
+    bis zum Anfang und führt danach das Einblenden aus.
+- o:  
+    Ausblenden.
+    Markiert alles von der aktuellen Position
+    bis zum Ende und führt danach das Ausblenden aus.
+- n:  
+    normalisieren.
+    Markiert das gesamte Dokument und führt die
+    Normalisierung aus.
+
+Alle Tastenkombinationen können im NVDA-Dialog
+Tastenbefehle geändert werden.
+Wenn Sie eine der Funktionen, die das addOn bereitstellt
+nicht nutzen, sondern die Funktion nutzen möchten,
+die von "Studio Recorder" bereitgestellt wird,
+löschen Sie die entsprechende Tastenkombination
+in diesem Dialog.
+
+Wenn Sie sich mit den Pfeiltasten bewegen, 
+erfolgt keine Sprachausgabe, um
+ungewollte Ausgaben während der Navigation im Dokument zu vermeiden.
+
+## Kontakt
+
+Wenn Sie mich erreichen wollen können Sie dies über
+[GitHub](https://github.com/MooSteinebach/StudioRecorder)
+tun oder mir eine Email an
+<studio@windyradio.de>
+senden.

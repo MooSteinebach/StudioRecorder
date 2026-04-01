@@ -1,24 +1,31 @@
-# NVDA AddOn for studio recorder
+# NVDA AddOn for "Studio Recorder"
 
-## What is studio recorder?
+Author:  
+Marco Steinebach <studio@windyradio.de>
 
-Studio recorder, developed by the american printing house (APH) is an App to record and manipulate audio.
+## What is "Studio Recorder"?
+
+"Studio Recorder", developed by the american printing house (APH), is an App to record and manipulate audio.
 More about this program including the download can be found [here](https://www.aph.org/product/studio-recorder-software-digital-download/)
+The users manual can be found [here](https://tech.aph.org/sr_doc.htm).
 
 ## what does this addOn offer?
 
-This addOn adds braille support as well as some additional keystrokes to ease the use of studio recorder.
+This addOn adds braille support as well as some additional keystrokes to ease the use of "Studio Recorder".
 
 ## braille support
-If you have a braille display the contents of the status bar is displayed on the brailledisplay while you are in the main window of studio recorder.
+
+If you have a braille display, the contents of the status bar is displayed on the brailledisplay while you are in the main window of "Studio Recorder".
 This makes it possible to see the current time while audio is played back
 and/or while you record new audio.
-So you can always keep track of the time within the audio material.
+So you can always keep track of your position within the audio material.
 
-The addOn displays all elements you have configured to be displayedin the status bar.
+The addOn displays all elements you have configured to be displayed in the status bar.
 In Studio Recorder's settings (CTRL+t) go to the TAB "Status Bar".
-Here you can tell Studio Recorder which elements you want tosee on the status bar.
+Here you can tell "Studio Recorder" which elements you want to see on the status bar.
+
 We recommend to check the following Items:
+
 - background progress
 - Message/status
 - current time
@@ -29,33 +36,50 @@ and to uncheck all other items.
 
 ## additional keyboard shortcuts
 
-The following shortcuts are added through the addOn.
-If one of the single letter key strokes is also a 
+If one of the single letter key strokes listed below is also a 
 Studio Recorder command, just press it twice to perform the action which 
-originally designed for Studio Recorder.
+was originally designed for "Studio Recorder".
 
-- CTRL+Delete
-delete all audio to the beginning
+The following shortcuts are added through the addOn.
 
-- ALT+Delete
-Delete all audio to the end
+- CTRL+Delete  
+    delete all audio to the beginning
+- ALT+Delete  
+    Delete all audio to the end
+- j:  
+    set start of selection.  
+    The normal key to do this in "Studio Recorder" is the left bracket,
+    but this key can't be used on non-english keyboards.
+- k:  
+    set end of selection.
+- shift+j:  
+    select to beginning.
+- shift+k:  
+    select to end.
+- ctrl+j:  
+    go to start of selection.
+- ctrl+k:  
+    go to end of selection.
+- i:  
+    fade in.  
+    Marks all audio to the beginning and performs a fade in.
+- o:  
+    fade out.  
+    Marks all audio to the end and performs a fade out.
+- n:  
+    normalize all audio  
+    Marks all audio and performs a normalize.
 
-- j:
-set start of selection.
-The normal key to do this in Studio Recorder is the left bracket,
-but this key can't be used on non-english keyboards.
+All keystrokes can be changed in NVDA's gestures dialog.  
+If you want to have Studio Recorder's original behaviour back for a keystroke,
+just delete it from the gestures dialog under "Studio Recorder".
 
-- k:
-set end of selection
+The arrow keys do not speak if pressed, to avoid
+unwanted speech output while navigating the document.
 
-- i:
-fade in.
-This keystroke marks all audio to the beginning and performs a fade in.
+## contact
 
-- o:
-fade out
-This keystroke marks all audio to the end and performs a fade out.
-
-- n:
-normalize all audio
-This keystroke marks all audio and performs a normalize.
+If you want to get in touch with me you can use
+[GitHub](https://github.com/MooSteinebach/StudioRecorder)
+or send an email to
+<studio@windyradio.de>
