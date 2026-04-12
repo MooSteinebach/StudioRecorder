@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 'StudioRecorder' '26.1'\n"
 "Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
-"POT-Creation-Date: 2026-04-01 10:52+0200\n"
-"PO-Revision-Date: 2026-04-01 11:13+0200\n"
+"POT-Creation-Date: 2026-04-12 21:27+0200\n"
+"PO-Revision-Date: 2026-04-12 21:34+0200\n"
 "Last-Translator: \n"
 "Language-Team: Marco Steinebach\n"
 "Language: de_DE@formal\n"
@@ -18,118 +18,118 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.9\n"
 
-#: addon\appModules\sr.py:41
+#: addon\appModules\sr.py:42
 msgid "No documents open"
-msgstr "kein Dokument geöffnet."
+msgstr "keine Dokumente geöffnet."
 
 #. cosmetic
 #. Translators: shown when status is set to stopped.
-#: addon\appModules\sr.py:56
+#: addon\appModules\sr.py:54
 msgid "s"
 msgstr "a"
 
 #. Translators: shown when status is set to playing.
-#: addon\appModules\sr.py:58
+#: addon\appModules\sr.py:56
 msgid "p"
 msgstr "s"
 
 #. Translators: shown when status is set to recording (over).
-#: addon\appModules\sr.py:60
+#: addon\appModules\sr.py:58
 msgid "rec over"
 msgstr "A ÜB"
 
 #. Translators: shown when status is set to recording (insert).
-#: addon\appModules\sr.py:62
+#: addon\appModules\sr.py:60
 msgid "rec ins"
 msgstr "A Einfg"
 
-#: addon\appModules\sr.py:125
+#: addon\appModules\sr.py:103
 msgid "Deletes all audio to the beginning"
 msgstr "löscht Audio bis zum Anfang"
 
 #. open edit menu
 #. delete to beginning
-#: addon\appModules\sr.py:132
+#: addon\appModules\sr.py:110
 msgid "Deleted to beginning!"
 msgstr "bis zum Anfang gelöscht."
 
-#: addon\appModules\sr.py:135
+#: addon\appModules\sr.py:113
 msgid "Deletes all audio to the end"
 msgstr "löscht alles bis zum Ende."
 
 #. open edit menu
 #. delete to end
-#: addon\appModules\sr.py:142
+#: addon\appModules\sr.py:120
 msgid "Deleted to end!"
 msgstr "bis zum Ende gelöscht."
 
-#: addon\appModules\sr.py:145
+#: addon\appModules\sr.py:123
 msgid "Mark start of selection"
 msgstr "markiert den Anfang der Auswahl"
 
 #. open edit menu
 #. selection submenu
 #. set start of selection
-#: addon\appModules\sr.py:153
+#: addon\appModules\sr.py:131
 msgid "set start of selection."
 msgstr "Anfang der Auswahl gesetzt."
 
-#: addon\appModules\sr.py:156
+#: addon\appModules\sr.py:134
 msgid "Mark end of selection"
 msgstr "markiert das Ende der Auswahl"
 
 #. open edit menu
 #. selection submenu
 #. set end of selection
-#: addon\appModules\sr.py:164
+#: addon\appModules\sr.py:142
 msgid "Set end of selection."
 msgstr "Ende der Auswahl gesetzt."
 
-#: addon\appModules\sr.py:167
+#: addon\appModules\sr.py:145
 msgid "Select to beginning"
 msgstr "bis zum Anfang auswählen."
 
 #. open edit menu
 #. selection submenu
 #. select to beginning
-#: addon\appModules\sr.py:175
+#: addon\appModules\sr.py:153
 msgid "selected to beginning."
 msgstr "bis zum Anfang ausgewählt."
 
-#: addon\appModules\sr.py:178
+#: addon\appModules\sr.py:156
 msgid "Select to end"
 msgstr "bis zum Ende auswählen"
 
 #. open edit menu
 #. selection submenu
 #. select to end
-#: addon\appModules\sr.py:186
+#: addon\appModules\sr.py:164
 msgid "Selected to end."
 msgstr "bis zum Ende ausgewählt."
 
-#: addon\appModules\sr.py:189
+#: addon\appModules\sr.py:167
 msgid "Go to start of selection"
 msgstr "Zum Anfang der Auswahl gehen."
 
 #. open transport menu
 #. selection submenu
 #. go to beginning of selection
-#: addon\appModules\sr.py:197
+#: addon\appModules\sr.py:175
 msgid "start of selection."
 msgstr "Anfang der Auswahl."
 
-#: addon\appModules\sr.py:200
+#: addon\appModules\sr.py:178
 msgid "Go to end of selection"
 msgstr "Zum Ende der Auswahl gehen."
 
 #. open transport menu
 #. selection submenu
 #. go to end of selection
-#: addon\appModules\sr.py:208
+#: addon\appModules\sr.py:186
 msgid "end of selection."
 msgstr "Ende der Auswahl."
 
-#: addon\appModules\sr.py:211
+#: addon\appModules\sr.py:189
 msgid "fade in"
 msgstr "einblenden"
 
@@ -138,11 +138,11 @@ msgstr "einblenden"
 #. select to beginning
 #. open process menu
 #. fade in
-#: addon\appModules\sr.py:221
+#: addon\appModules\sr.py:199
 msgid "faded in."
 msgstr "eingeblendet"
 
-#: addon\appModules\sr.py:224
+#: addon\appModules\sr.py:202
 msgid "fade out"
 msgstr "ausblenden"
 
@@ -151,11 +151,11 @@ msgstr "ausblenden"
 #. select to end
 #. open process menu
 #. fade out
-#: addon\appModules\sr.py:234
+#: addon\appModules\sr.py:212
 msgid "faded out."
 msgstr "ausgeblendet"
 
-#: addon\appModules\sr.py:237
+#: addon\appModules\sr.py:215
 msgid "normalize all audio"
 msgstr "alles normalisieren"
 
@@ -163,19 +163,19 @@ msgstr "alles normalisieren"
 #. open process menu
 #. normalize
 #. close the dialog
-#: addon\appModules\sr.py:246
+#: addon\appModules\sr.py:224
 msgid "normalized."
 msgstr "normalisiert"
 
-#: addon\appModules\sr.py:249
+#: addon\appModules\sr.py:227
 msgid "delete"
 msgstr "entfernen"
 
-#: addon\appModules\sr.py:254
+#: addon\appModules\sr.py:232
 msgid "deleted."
 msgstr "gelöscht"
 
-#: addon\appModules\sr.py:258
+#: addon\appModules\sr.py:236
 msgid "do not speak while using arrow keys"
 msgstr "keine Sprachausgabe für Pfeiltasten"
 

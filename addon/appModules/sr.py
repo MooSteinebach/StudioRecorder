@@ -1,8 +1,14 @@
 # -*- coding: utf-8 -*-
-# AddOn for studio recorder
-# adds braille support and a few additional keystrokes
-# to ease the use of SR.
-# Copyright 2026 Marco Steinebach <studio@windyradio.de>
+
+"""
+AddOn for studio recorder
+adds braille support and a few additional keystrokes
+to ease the use of SR.
+Copyright 2026 Marco Steinebach <studio@windyradio.de>
+V26.02:
+used overlay classes, because some keystrokes did'nt work in other
+than main window.
+"""
 
 import appModuleHandler
 import addonHandler
@@ -14,105 +20,77 @@ import keyboardHandler
 import speech
 import config
 import wx
+from NVDAObjects.IAccessible import IAccessible
 
 addonHandler.initTranslation()
 
 # for making the single letter scripts work when the script key is pressed two times.
 gbTaskTimer = None
 
-class AppModule(appModuleHandler.AppModule):
-  scriptCategory = "Studio Recorder"
+def brailleMessage (msg):
+# sends a message to the braille display.
+# not really good style, but working!
   oldShowBrailleMessages = config.conf["braille"]["showMessages"]
-  
-  # helper functions
-  def inMainWindow(self, obj):
-  # returns True, if focus is in the main window
-    if (obj.windowClassName == "ComRecWV" or
-        obj.windowClassName == "AfxFrameOrView140s"):
-      return True
-    else:
-      return False
-      
-  def displayInfos(self, obj):
-  # displays the needed infos on the braille display.
-    focusObject = api.getFocusObject()
-    # any document open?
-    if focusObject.windowClassName == "MDIClient":
-      speech.speakMessage (_("No documents open"))
-      return
-    # are we in the main window of studio recorder?
-    if not self.inMainWindow(focusObject):
-      return
-    # does event apply to status bar?
-    if obj.windowClassName != "msctls_statusbar32":
-      return
-    text = ""
-    # event fires for each child of the status bar
-    for i in obj.parent.children:
-      text = text + i.name + " "
-    text = text.strip()
-    # cosmetic
-    # Translators: shown when status is set to stopped.
-    text = text.replace ("Stopped", _("s"))
-    # Translators: shown when status is set to playing.
-    text = text.replace ("Playing", _("p"))
-    # Translators: shown when status is set to recording (over).
-    text = text.replace ("Recording (over)", _("rec over"))
-    # Translators: shown when status is set to recording (insert).
-    text = text.replace ("Recording (insert)", _("rec ins"))
-    if text.find ("sl") == -1:
-      text = text + " --"
-    else:
-      text = text.replace(" sl", "")
-    # add currently open dokument
-    title = api.getForegroundObject().name
-    title = title[title.find("-")+2:]
-    braille.handler.message (text + " " + title)
+  config.conf["braille"]["showMessages"] = braille.ShowMessages.SHOW_INDEFINITELY
+  braille.handler.message (msg)
+  config.conf["braille"]["showMessages"] = oldShowBrailleMessages
+
+def displayInfos():
+# displays the infos on the status bar on the braille display.
+  # any document open?
+  if api.getFocusObject().windowClassName == "MDIClient":
+    speech.speakMessage (_("No documents open"))
+    return
+  obj = api.getStatusBar ().children[0]
+  if obj.windowClassName != "msctls_statusbar32":
+    return
+  text = ""
+  # event fires for each child of the status bar
+  for i in obj.parent.children:
+    text = text + i.name + " "
+  text = text.strip()
+  # cosmetic
+  # Translators: shown when status is set to stopped.
+  text = text.replace ("Stopped", _("s"))
+  # Translators: shown when status is set to playing.
+  text = text.replace ("Playing", _("p"))
+  # Translators: shown when status is set to recording (over).
+  text = text.replace ("Recording (over)", _("rec over"))
+  # Translators: shown when status is set to recording (insert).
+  text = text.replace ("Recording (insert)", _("rec ins"))
+  if text.find ("sl") == -1:
+    text = text + " --"
+  else:
+    text = text.replace(" sl", "")
+  # add currently open dokument
+  title = api.getForegroundObject().name
+  title = title[title.find("-")+2:]
+  brailleMessage (text + " " + title)
+
+class CustomMainWindow(IAccessible):
+# will become active if user is in main window.
+# most scripts are only useful, as long as focus is in main window.
 
   def sendKeySequence(self, gesture, keys, msg):
   # sends the given key sequence, one key after the other.
-  # if focus is not in main window, e.g. a dialog,
-  # the key that triggered the script is send
-  # and nothing is spoken.
-    if not self.inMainWindow(api.getFocusObject()):
-      gesture.send()
-      return
-    # if control is included in the script key,
+    # if the control-key is included in the script key,
     # just send a single control.
     # This is necessary, if control is part of the script key,
-    # the rest of the key sequence won't work.
+    # the rest of the key sequence won't work, e.g.: control+delete
     keyboardHandler.KeyboardInputGesture.fromName("control").send()
     for key in keys:
       keyboardHandler.KeyboardInputGesture.fromName(key).send()
     speech.speakMessage (msg)
 
   # events
-  def event_gainFocus(self, obj, nextHandler):
-    if (self.inMainWindow (obj) or
-        obj.windowClassName == "MDIClient"): # no document open
-      # we are in the main window
-      if config.conf["braille"]["showMessages"] != braille.ShowMessages.SHOW_INDEFINITELY:
-        config.conf["braille"]["showMessages"] = braille.ShowMessages.SHOW_INDEFINITELY
-      self.displayInfos(api.getStatusBar ().children[0])
-    nextHandler()   
-    
-  def event_loseFocus(self, obj, nextHandler):
-    if (self.inMainWindow (obj) or
-        obj.windowClassName == "MDIClient"): # no document open
-      # we are in the main window
-      if config.conf["braille"]["showMessages"] != self.oldShowBrailleMessages:
-        config.conf["braille"]["showMessages"] = self.oldShowBrailleMessages
-    nextHandler()   
-      
-  def event_nameChange(self, obj, nextHandler):
-  # occures whenever the value of status bar changes.
-    self.displayInfos(obj)
-    nextHandler()
+  def event_gainFocus(self):
+    displayInfos()
 
   # scripts
   def doLater (self, gesture, keys, msg):
   # triggered if calling script key was pressed only once.
     global gbTaskTimer
+
     if gbTaskTimer is not None: # there was a script call before
       gbTaskTimer.Stop()
       gbTaskTimer = None
@@ -267,5 +245,20 @@ class AppModule(appModuleHandler.AppModule):
   )
   def script_pressArrowKey(self, gesture):
     gesture.send()
-  
+
+class CustomStatusBar(IAccessible):
+  def event_nameChange(self):
+  # occures whenever the value of status bar changes.
+    displayInfos()
+ 
+class AppModule(appModuleHandler.AppModule):
+  scriptCategory = "Studio Recorder"
+
+  def chooseNVDAObjectOverlayClasses(self, obj, clsList):
+    if (obj.windowClassName == "ComRecWV" or
+        obj.windowClassName == "AfxFrameOrView140s"):
+      clsList.insert(0, CustomMainWindow)
+    elif obj.windowClassName == "msctls_statusbar32":
+      clsList.insert(0, CustomStatusBar)
+    
 

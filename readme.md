@@ -83,3 +83,9 @@ If you want to get in touch with me you can use
 [GitHub](https://github.com/MooSteinebach/StudioRecorder)
 or send an email to
 <studio@windyradio.de>
+
+## change log
+
+### V26.02
+
+Fix: Some keystrokes did'nt work as expected

@@ -110,3 +110,9 @@ Wenn Sie mich erreichen wollen können Sie dies über
 tun oder mir eine Email an
 <studio@windyradio.de>
 senden.
+
+## Versionsgeschichte
+
+### V26.02
+
+Fix: einige Tastenkombinationen funktionierten nicht wie erwartet.
