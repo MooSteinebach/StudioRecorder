@@ -5,6 +5,11 @@ AddOn for studio recorder
 adds braille support and a few additional keystrokes
 to ease the use of SR.
 Copyright 2026 Marco Steinebach <studio@windyradio.de>
+V26.03:
+- Ready for NVDA 2026!
+- not speaks open document when changing with ctrl+tab and ctrl+shift+tab
+- if documentwindow is not maximized, it's maximized automatically.
+- Minor bug fixes!
 V26.02:
 used overlay classes, because some keystrokes did'nt work in other
 than main window.
@@ -35,23 +40,45 @@ def brailleMessage (msg):
   braille.handler.message (msg)
   config.conf["braille"]["showMessages"] = oldShowBrailleMessages
 
+def getOpenDocument(modified):
+  obj = api.getForegroundObject ()
+  if obj is None:
+    return ""
+  title = obj.name
+  if title is None:
+    return ""
+  if title.find("[") == -1:
+    # no brackets arround the title name, window is not maximized!
+    keyboardHandler.KeyboardInputGesture.fromName("alt+-").send()
+    keyboardHandler.KeyboardInputGesture.fromName("x").send()
+  title = title[title.find("-")+2:] # cut off app name
+  title = title.replace("[", "")
+  title = title.replace("]","")
+  if modified:
+    title = title.replace ("*", _(" - modified"))
+  return title
+
 def displayInfos():
 # displays the infos on the status bar on the braille display.
   # any document open?
   if api.getFocusObject().windowClassName == "MDIClient":
     speech.speakMessage (_("No documents open"))
     return
-  obj = api.getStatusBar ().children[0]
+  obj = api.getStatusBar ()
+  if obj == None:
+    return
+  obj = obj.children[0]
+  if obj == None:
+    return
   if obj.windowClassName != "msctls_statusbar32":
     return
   text = ""
   # event fires for each child of the status bar
   for i in obj.parent.children:
-    text = text + i.name + " "
+    text += i.name + " "
   text = text.strip()
   # cosmetic
-  # Translators: shown when status is set to stopped.
-  text = text.replace ("Stopped", _("s"))
+  text = text.replace ("Stopped", " ")
   # Translators: shown when status is set to playing.
   text = text.replace ("Playing", _("p"))
   # Translators: shown when status is set to recording (over).
@@ -59,13 +86,10 @@ def displayInfos():
   # Translators: shown when status is set to recording (insert).
   text = text.replace ("Recording (insert)", _("rec ins"))
   if text.find ("sl") == -1:
-    text = text + " --"
+    text += " --"
   else:
-    text = text.replace(" sl", "")
-  # add currently open dokument
-  title = api.getForegroundObject().name
-  title = title[title.find("-")+2:]
-  brailleMessage (text + " " + title)
+    text = text.replace(" sl ", "")
+  brailleMessage (text + " " + getOpenDocument(False))
 
 class CustomMainWindow(IAccessible):
 # will become active if user is in main window.
@@ -84,6 +108,7 @@ class CustomMainWindow(IAccessible):
 
   # events
   def event_gainFocus(self):
+    speech.speakMessage (getOpenDocument (True))
     displayInfos()
 
   # scripts
@@ -223,6 +248,7 @@ class CustomMainWindow(IAccessible):
        "enter"], # close the dialog
       _("normalized."))
 
+  # silencing cursor movement
   @script(
     description=_("delete"),
     gesture="kb:delete"
@@ -231,7 +257,6 @@ class CustomMainWindow(IAccessible):
     gesture.send()
     speech.speakMessage (_("deleted."))
 
-  # silencing cursor movement
   @script(
     description=_("do not speak while using arrow keys"),
     gestures=[
@@ -261,4 +286,3 @@ class AppModule(appModuleHandler.AppModule):
     elif obj.windowClassName == "msctls_statusbar32":
       clsList.insert(0, CustomStatusBar)
     
-

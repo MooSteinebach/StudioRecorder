@@ -15,7 +15,7 @@ This addOn adds braille support as well as some additional keystrokes to ease th
 
 ## braille support
 
-If you have a braille display, the content of the status bar is displayed on the brailledisplay while you are in the main window of "Studio Recorder".
+If you have a braille display, the content of the status bar is displayed on the braille display while you are in the main window of "Studio Recorder".
 This makes it possible to see the current time while audio is played back
 and/or while you record new audio.
 So you can always keep track of your position within the audio material.
@@ -85,6 +85,16 @@ or send an email to
 <studio@windyradio.de>
 
 ## change log
+
+### V26.03
+
+- Ready for NVDA 2026!
+
+- if a document has been modified, it will now be announced.
+
+- if studio recorder is stopped, a space is displayed on the braille display.
+
+- when changing an open document with control+tab or control+shift+tab, the document title was not spoken.
 
 ### V26.02
 

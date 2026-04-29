@@ -113,6 +113,17 @@ senden.
 
 ## Versionsgeschichte
 
+### V26.03
+
+- Bereit für NVDA 2026!
+
+- ob ein offenes Dokument gespeichert werden muss, wird jetzt angesagt.
+
+- wenn Studio Recorder im modus "gestoppt" ist, wird auf der Braillezeile ein Leerzeichen dargestellt.
+
+- navigierte man mit strg+tab oder strg+Umschalt+tab durch die offenen Dokumente, wurden diese nicht angesagt.
+
+
 ### V26.02
 
 Fix: einige Tastenkombinationen funktionierten nicht wie erwartet.
