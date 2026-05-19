@@ -5,9 +5,11 @@ AddOn for studio recorder
 adds braille support and a few additional keystrokes
 to ease the use of SR.
 Copyright 2026 Marco Steinebach <studio@windyradio.de>
+V26.04:
+- while navigating through open windows the correct window title is spoken now.
 V26.03:
 - Ready for NVDA 2026!
-- not speaks open document when changing with ctrl+tab and ctrl+shift+tab
+- now speaks open document when changing with ctrl+tab and ctrl+shift+tab
 - if documentwindow is not maximized, it's maximized automatically.
 - Minor bug fixes!
 V26.02:
@@ -31,6 +33,9 @@ addonHandler.initTranslation()
 
 # for making the single letter scripts work when the script key is pressed two times.
 gbTaskTimer = None
+# the last spoken title of current open document
+gbLastWindowTitle = ""
+gbTextToSpeak = _("Studio recorder is ready.")
 
 def brailleMessage (msg):
 # sends a message to the braille display.
@@ -88,7 +93,7 @@ def displayInfos():
   if text.find ("sl") == -1:
     text += " --"
   else:
-    text = text.replace(" sl ", "")
+    text = text.replace("sl ", "")
   brailleMessage (text + " " + getOpenDocument(False))
 
 class CustomMainWindow(IAccessible):
@@ -97,6 +102,8 @@ class CustomMainWindow(IAccessible):
 
   def sendKeySequence(self, gesture, keys, msg):
   # sends the given key sequence, one key after the other.
+    global gbTextToSpeak
+    
     # if the control-key is included in the script key,
     # just send a single control.
     # This is necessary, if control is part of the script key,
@@ -104,12 +111,22 @@ class CustomMainWindow(IAccessible):
     keyboardHandler.KeyboardInputGesture.fromName("control").send()
     for key in keys:
       keyboardHandler.KeyboardInputGesture.fromName(key).send()
+    gbTextToSpeak = msg
     speech.speakMessage (msg)
-
+    
   # events
   def event_gainFocus(self):
-    speech.speakMessage (getOpenDocument (True))
+    global gbLastWindowTitle, gbTextToSpeak
+    
+    speech.speech.cancelSpeech()
+    currentWindowTitle = getOpenDocument(True)
+    if currentWindowTitle != "" and currentWindowTitle != gbLastWindowTitle:
+      gbLastWindowTitle = currentWindowTitle
+      speech.speakMessage (currentWindowTitle)
     displayInfos()
+    if gbTextToSpeak != "":
+      speech.speakMessage (gbTextToSpeak)
+      gbTextToSpeak = ""
 
   # scripts
   def doLater (self, gesture, keys, msg):
@@ -258,6 +275,22 @@ class CustomMainWindow(IAccessible):
     speech.speakMessage (_("deleted."))
 
   @script(
+    description=_("Go to top of file"),
+    gestures=["kb:w", "kb:control+home"]
+  )
+  def script_topOfFile(self, gesture):
+    gesture.send()
+    speech.speakMessage (_("Top of file."))
+
+  @script(
+    description=_("Go to bottom of file"),
+    gestures=["kb:e", "kb:control+end"]
+  )
+  def script_endOfFile(self, gesture):
+    gesture.send()
+    speech.speakMessage (_("end of file."))
+
+  @script(
     description=_("do not speak while using arrow keys"),
     gestures=[
               "kb:leftarrow",
@@ -285,4 +318,7 @@ class AppModule(appModuleHandler.AppModule):
       clsList.insert(0, CustomMainWindow)
     elif obj.windowClassName == "msctls_statusbar32":
       clsList.insert(0, CustomStatusBar)
-    
+
+  def event_gainFocus(self, obj, nextHandler):
+    #speech.speakMessage(obj.role)
+    nextHandler()
