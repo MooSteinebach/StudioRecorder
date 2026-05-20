@@ -6,6 +6,8 @@ adds braille support and a few additional keystrokes
 to ease the use of SR.
 Copyright 2026 Marco Steinebach <studio@windyradio.de>
 V26.04:
+- added an alternative keyboard layer, NVDA+space
+  If this layer is active, the original key is send to SR.
 - while navigating through open windows the correct window title is spoken now.
 V26.03:
 - Ready for NVDA 2026!
@@ -26,16 +28,22 @@ import braille
 import keyboardHandler
 import speech
 import config
-import wx
 from NVDAObjects.IAccessible import IAccessible
+import tones
+import wx
 
 addonHandler.initTranslation()
 
-# for making the single letter scripts work when the script key is pressed two times.
-gbTaskTimer = None
-# the last spoken title of current open document
-gbLastWindowTitle = ""
-gbTextToSpeak = _("Studio recorder is ready.")
+class GlobalVariables:
+  # holds all global variables
+  def __init__(self):
+    self.lastWindowTitle = ""
+    self.textToSpeak = ""
+    # al = alternative layer
+    self.alIsActive = False
+    self.alIsLocked = False
+    
+globals = GlobalVariables()
 
 def brailleMessage (msg):
 # sends a message to the braille display.
@@ -102,71 +110,86 @@ class CustomMainWindow(IAccessible):
 
   def sendKeySequence(self, gesture, keys, msg):
   # sends the given key sequence, one key after the other.
-    global gbTextToSpeak
-    
     # if the control-key is included in the script key,
     # just send a single control.
     # This is necessary, if control is part of the script key,
     # the rest of the key sequence won't work, e.g.: control+delete
     keyboardHandler.KeyboardInputGesture.fromName("control").send()
+    if globals.alIsActive:
+      gesture.send()
+      if not globals.alIsLocked:
+        globals.alIsActive = False
+      return
+    # alternative layer is not active
+    curMode = speech.getState().speechMode
+    speech.cancelSpeech()
+    speech.setSpeechMode(speech.SpeechMode.off)
     for key in keys:
       keyboardHandler.KeyboardInputGesture.fromName(key).send()
-    gbTextToSpeak = msg
+    globals.textToSpeak = msg
+    speech.setSpeechMode(curMode)
     speech.speakMessage (msg)
     
   # events
   def event_gainFocus(self):
-    global gbLastWindowTitle, gbTextToSpeak
-    
-    speech.speech.cancelSpeech()
+    speech.cancelSpeech()
     currentWindowTitle = getOpenDocument(True)
-    if currentWindowTitle != "" and currentWindowTitle != gbLastWindowTitle:
-      gbLastWindowTitle = currentWindowTitle
+    if currentWindowTitle != "" and currentWindowTitle != globals.lastWindowTitle:
+      globals.lastWindowTitle = currentWindowTitle
       speech.speakMessage (currentWindowTitle)
     displayInfos()
-    if gbTextToSpeak != "":
-      speech.speakMessage (gbTextToSpeak)
-      gbTextToSpeak = ""
+    if globals.textToSpeak != "":
+      speech.speakMessage (globals.textToSpeak)
+      globals.textToSpeak = ""
 
   # scripts
-  def doLater (self, gesture, keys, msg):
-  # triggered if calling script key was pressed only once.
-    global gbTaskTimer
+  # alternative layer
+  @script(
+    description=_("Toggles alternative layer"),
+    gesture="kb:NVDA+space"
+  )
+  def script_toggleAlternativeLayer(self, gesture):
+    if globals.alIsActive and scriptHandler.getLastScriptRepeatCount() == 1:
+      globals.alIsLocked = True
+      speech.speakMessage (_("Alternate keyboard layer will stay active!"))
+      return
+    if globals.alIsActive:
+      globals.alIsActive = False
+      globals.alIsLocked = False
+      tones.beep(800, 100, 100)
+      wx.CallLater (150, tones.beep, 400, 100, 100)
+    else: # activate the layer
+      globals.alIsActive = True
+      tones.beep (400, 100, 100)
+      wx.CallLater (150, tones.beep, 800, 100, 100)
 
-    if gbTaskTimer is not None: # there was a script call before
-      gbTaskTimer.Stop()
-      gbTaskTimer = None
-    if scriptHandler.getLastScriptRepeatCount() == 0:
-      gbTaskTimer = wx.CallLater(250, self.sendKeySequence, gesture, keys, msg)
-    else:
-      gesture.send()
-
+  # other scripts
   @script(
     description=_("Deletes all audio to the beginning"),
     gesture="kb:control+delete"
   )
   def script_deleteToBeginning(self, gesture):
-    self.sendKeySequence (gesture, [
-      "alt+e", # open edit menu
-      "b"], # delete to beginning
-    _("Deleted to beginning!"))
+    self.sendKeySequence (gesture,
+      ["alt+e", # open edit menu
+       "b"], # delete to beginning
+      _("Deleted to beginning!"))
 
   @script(
     description=_("Deletes all audio to the end"),
     gesture="kb:alt+delete"
   )
   def script_deleteToEnd(self, gesture):
-    self.sendKeySequence (gesture, [
-      "alt+e", # open edit menu
-      "e"], # delete to end
-    _("Deleted to end!"))
+    self.sendKeySequence (gesture,
+      ["alt+e", # open edit menu
+       "e"], # delete to end
+      _("Deleted to end!"))
 
   @script(
     description=_("Mark start of selection"),
     gesture="kb:j"
   )
   def script_startOfSelection(self, gesture):
-    self.doLater (gesture,
+    self.sendKeySequence (gesture,
       ["alt+e", # open edit menu
        "s", # selection submenu
        "s"], # set start of selection
@@ -177,7 +200,7 @@ class CustomMainWindow(IAccessible):
     gesture="kb:k"
   )
   def script_endOfSelection(self, gesture):
-    self.doLater (gesture,
+    self.sendKeySequence (gesture,
       ["alt+e", # open edit menu
        "s", # selection submenu
        "e"], # set end of selection
@@ -188,7 +211,7 @@ class CustomMainWindow(IAccessible):
     gesture="kb:shift+j"
   )
   def script_selectToBeginning(self, gesture):
-    self.doLater (gesture,
+    self.sendKeySequence (gesture,
       ["alt+e", # open edit menu
        "s", # selection submenu
        "b"], # select to beginning
@@ -199,7 +222,7 @@ class CustomMainWindow(IAccessible):
     gesture="kb:shift+k"
   )
   def script_selectToEnd(self, gesture):
-    self.doLater (gesture,
+    self.sendKeySequence (gesture,
       ["alt+e", # open edit menu
        "s", # selection submenu
        "n"], # select to end
@@ -210,7 +233,7 @@ class CustomMainWindow(IAccessible):
     gesture="kb:control+j"
   )
   def script_goToStartOfSelection(self, gesture):
-    self.doLater (gesture,
+    self.sendKeySequence (gesture,
       ["alt+r", # open transport menu
        "c", # selection submenu
        "b"], # go to beginning of selection
@@ -221,7 +244,7 @@ class CustomMainWindow(IAccessible):
     gesture="kb:control+k"
   )
   def script_goToEndOfSelection(self, gesture):
-    self.doLater (gesture,
+    self.sendKeySequence (gesture,
       ["alt+r", # open transport menu
        "c", # selection submenu
        "e"], # go to end of selection
@@ -232,7 +255,7 @@ class CustomMainWindow(IAccessible):
     gesture="kb:i"
   )
   def script_fadeIn(self, gesture):
-    self.doLater (gesture,
+    self.sendKeySequence (gesture,
       ["alt+e", # open edit menu
        "s", # selection submenu
        "b", # select to beginning
@@ -245,7 +268,7 @@ class CustomMainWindow(IAccessible):
     gesture="kb:o"
   )
   def script_fadeOut(self, gesture):
-    self.doLater (gesture,
+    self.sendKeySequence (gesture,
       ["alt+e", # open edit menu
        "s", # selection submenu
        "n", # select to end
@@ -258,14 +281,40 @@ class CustomMainWindow(IAccessible):
     gesture="kb:n"
   )
   def script_normalize(self, gesture):
-    self.doLater (gesture,
+    self.sendKeySequence (gesture,
       ["control+a", # mark all audio
        "alt+p", # open process menu
        "n", # normalize
        "enter"], # close the dialog
       _("normalized."))
 
-  # silencing cursor movement
+  @script(
+    description=_("trim silence"),
+    gesture="kb:t"
+  )
+  def script_trimSilence(self, gesture):
+    self.sendKeySequence (gesture,
+      ["alt+e", # open edit menu
+       "n"], # open trim silence dialog
+      " ")
+
+  # responding on some keys
+  @script(
+    description=_("clear selection"),
+    gesture="kb:c"
+  )
+  def script_pressC(self, gesture):
+    gesture.send()
+    speech.speakMessage (_("selection cleared."))
+
+  @script(
+    description=_("reset peak meter"),
+    gesture="kb:r"
+  )
+  def script_pressR(self, gesture):
+    gesture.send()
+    speech.speakMessage (_("peak reseted."))
+
   @script(
     description=_("delete"),
     gesture="kb:delete"
@@ -283,13 +332,14 @@ class CustomMainWindow(IAccessible):
     speech.speakMessage (_("Top of file."))
 
   @script(
-    description=_("Go to bottom of file"),
+    description=_("Go to end of file"),
     gestures=["kb:e", "kb:control+end"]
   )
   def script_endOfFile(self, gesture):
     gesture.send()
     speech.speakMessage (_("end of file."))
 
+  # silencing cursor movement
   @script(
     description=_("do not speak while using arrow keys"),
     gestures=[
@@ -319,6 +369,6 @@ class AppModule(appModuleHandler.AppModule):
     elif obj.windowClassName == "msctls_statusbar32":
       clsList.insert(0, CustomStatusBar)
 
-  def event_gainFocus(self, obj, nextHandler):
-    #speech.speakMessage(obj.role)
+  def event_foreground(self, obj, nextHandler):
+    globals.textToSpeak = "Studio recorder"
     nextHandler()

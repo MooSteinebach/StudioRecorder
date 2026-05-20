@@ -36,10 +36,6 @@ and to uncheck all other items.
 
 ## additional keyboard shortcuts
 
-If one of the single letter key strokes listed below is also a 
-Studio Recorder command, just press it twice to perform the action which 
-was originally designed for "Studio Recorder".
-
 The following shortcuts are added through the addOn.
 
 - CTRL+Delete:  
@@ -69,6 +65,8 @@ The following shortcuts are added through the addOn.
 - n:  
     normalize all audio  
     Marks all audio and performs a normalize.
+- t:
+    opens the dialog to trim silence from booth ends of the file
 
 All keystrokes can be changed in NVDA's gestures dialog.  
 If you want to have Studio Recorder's original behaviour back for a keystroke,
@@ -76,6 +74,27 @@ just delete it from the gestures dialog under "Studio Recorder".
 
 The arrow keys do not speak if pressed, to avoid
 unwanted speech output while navigating the document.
+
+## alternate keyboard layer
+
+If you e.g. use often marks, you might want to use the keystroke "n"
+to name a mark, which is the original behaviour, instead of doing a normalize.
+In this cases, you can press  
+NVDA+Space  
+to activate the alternative layer.
+If you press "n" now, it will name the current mark.
+After one key press, this layer is deactivated automatically.
+If you want it to stay active, just press  
+NVDA+space  
+twice times and it will stay active, 
+until you press  
+NVDA+space  
+again.
+An asscending tone is played if this mode is active, a descending tone otherwise.
+
+In summary: if you need a keystroke, wheere the addOn performs a different function than Studio Recorder,
+just press NVDA+Space followed by the corresponding key. This is an easy
+way to perform the original task without changing settings permanently.
 
 ## contact
 
@@ -85,6 +104,15 @@ or send an email to
 <studio@windyradio.de>
 
 ## change log
+
+### V26.04
+
+- added the alternate keyboard layer.
+
+- the keys "r" and "c" give a spoken message now.
+
+- removed the double pressing of a key to activate its original behaviour.
+
 
 ### V26.03
 

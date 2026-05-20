@@ -25,10 +25,10 @@ addon_info = AddonInfo(
 Also a few additional keystrokes are implemented
 to ease common tasks which do not have shortcuts."""),
 	# version
-	addon_version="26.03",
+	addon_version="26.04",
 	# Brief changelog for this version
 	# Translators: what's new content for the add-on version to be shown in the add-on store
-	addon_changelog=_("""Ready for NVDA 2026!"""),
+	addon_changelog=_("""Added an alternative keyboard layer, some minor bug fixes."""),
 	# Author(s)
 	addon_author="Marco Steinebach <studio@windyradio.de>",
 	# URL for the add-on documentation support

@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 'StudioRecorder' '26.1'\n"
 "Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
-"POT-Creation-Date: 2026-04-29 15:52+0200\n"
-"PO-Revision-Date: 2026-04-29 16:40+0200\n"
+"POT-Creation-Date: 2026-05-20 06:27+0200\n"
+"PO-Revision-Date: 2026-05-20 06:50+0200\n"
 "Last-Translator: \n"
 "Language-Team: Marco Steinebach\n"
 "Language: de_DE@formal\n"
@@ -18,116 +18,124 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.9\n"
 
-#: addon\appModules\sr.py:58
+#: addon\appModules\sr.py:71
 msgid " - modified"
 msgstr " - geändert"
 
-#: addon\appModules\sr.py:65
+#: addon\appModules\sr.py:78
 msgid "No documents open"
 msgstr "keine Dokumente geöffnet."
 
 #. Translators: shown when status is set to playing.
-#: addon\appModules\sr.py:83
+#: addon\appModules\sr.py:96
 msgid "p"
 msgstr "s"
 
 #. Translators: shown when status is set to recording (over).
-#: addon\appModules\sr.py:85
+#: addon\appModules\sr.py:98
 msgid "rec over"
 msgstr "A ÜB"
 
 #. Translators: shown when status is set to recording (insert).
-#: addon\appModules\sr.py:87
+#: addon\appModules\sr.py:100
 msgid "rec ins"
 msgstr "A Einfg"
 
-#: addon\appModules\sr.py:128
+#: addon\appModules\sr.py:148
+msgid "Toggles alternative layer"
+msgstr "schaltet den alternativen Modus ein bzw. aus"
+
+#: addon\appModules\sr.py:154
+msgid "Alternate keyboard layer will stay active!"
+msgstr "Alternativer Modus bleibt aktiv"
+
+#: addon\appModules\sr.py:168
 msgid "Deletes all audio to the beginning"
 msgstr "löscht alles bis zum Anfang"
 
 #. open edit menu
 #. delete to beginning
-#: addon\appModules\sr.py:135
+#: addon\appModules\sr.py:175
 msgid "Deleted to beginning!"
 msgstr "bis zum Anfang gelöscht."
 
-#: addon\appModules\sr.py:138
+#: addon\appModules\sr.py:178
 msgid "Deletes all audio to the end"
 msgstr "löscht alles bis zum Ende."
 
 #. open edit menu
 #. delete to end
-#: addon\appModules\sr.py:145
+#: addon\appModules\sr.py:185
 msgid "Deleted to end!"
 msgstr "bis zum Ende gelöscht."
 
-#: addon\appModules\sr.py:148
+#: addon\appModules\sr.py:188
 msgid "Mark start of selection"
 msgstr "markiert den Anfang der Auswahl"
 
 #. open edit menu
 #. selection submenu
 #. set start of selection
-#: addon\appModules\sr.py:156
+#: addon\appModules\sr.py:196
 msgid "set start of selection."
 msgstr "Anfang der Auswahl gesetzt."
 
-#: addon\appModules\sr.py:159
+#: addon\appModules\sr.py:199
 msgid "Mark end of selection"
 msgstr "markiert das Ende der Auswahl"
 
 #. open edit menu
 #. selection submenu
 #. set end of selection
-#: addon\appModules\sr.py:167
+#: addon\appModules\sr.py:207
 msgid "Set end of selection."
 msgstr "Ende der Auswahl gesetzt."
 
-#: addon\appModules\sr.py:170
+#: addon\appModules\sr.py:210
 msgid "Select to beginning"
 msgstr "bis zum Anfang auswählen."
 
 #. open edit menu
 #. selection submenu
 #. select to beginning
-#: addon\appModules\sr.py:178
+#: addon\appModules\sr.py:218
 msgid "selected to beginning."
 msgstr "bis zum Anfang ausgewählt."
 
-#: addon\appModules\sr.py:181
+#: addon\appModules\sr.py:221
 msgid "Select to end"
 msgstr "bis zum Ende auswählen"
 
 #. open edit menu
 #. selection submenu
 #. select to end
-#: addon\appModules\sr.py:189
+#: addon\appModules\sr.py:229
 msgid "Selected to end."
 msgstr "bis zum Ende ausgewählt."
 
-#: addon\appModules\sr.py:192
+#: addon\appModules\sr.py:232
 msgid "Go to start of selection"
 msgstr "Zum Anfang der Auswahl gehen."
 
 #. open transport menu
 #. selection submenu
 #. go to beginning of selection
-#: addon\appModules\sr.py:200
+#: addon\appModules\sr.py:240
 msgid "start of selection."
 msgstr "Anfang der Auswahl."
 
-#: addon\appModules\sr.py:203
+#: addon\appModules\sr.py:243
 msgid "Go to end of selection"
 msgstr "Zum Ende der Auswahl gehen."
 
 #. open transport menu
 #. selection submenu
 #. go to end of selection
-#: addon\appModules\sr.py:211
+#: addon\appModules\sr.py:251
 msgid "end of selection."
 msgstr "Ende der Auswahl."
 
-#: addon\appModules\sr.py:214
+#: addon\appModules\sr.py:254
 msgid "fade in"
 msgstr "einblenden"
 
@@ -136,11 +144,11 @@ msgstr "einblenden"
 #. select to beginning
 #. open process menu
 #. fade in
-#: addon\appModules\sr.py:224
+#: addon\appModules\sr.py:264
 msgid "faded in."
 msgstr "eingeblendet"
 
-#: addon\appModules\sr.py:227
+#: addon\appModules\sr.py:267
 msgid "fade out"
 msgstr "ausblenden"
 
@@ -149,11 +157,11 @@ msgstr "ausblenden"
 #. select to end
 #. open process menu
 #. fade out
-#: addon\appModules\sr.py:237
+#: addon\appModules\sr.py:277
 msgid "faded out."
 msgstr "ausgeblendet"
 
-#: addon\appModules\sr.py:240
+#: addon\appModules\sr.py:280
 msgid "normalize all audio"
 msgstr "alles normalisieren"
 
@@ -161,19 +169,55 @@ msgstr "alles normalisieren"
 #. open process menu
 #. normalize
 #. close the dialog
-#: addon\appModules\sr.py:249
+#: addon\appModules\sr.py:289
 msgid "normalized."
 msgstr "normalisiert"
 
-#: addon\appModules\sr.py:253
+#: addon\appModules\sr.py:292
+msgid "trim silence"
+msgstr "Stille entfernen"
+
+#: addon\appModules\sr.py:303
+msgid "clear selection"
+msgstr "Auswahl aufheben"
+
+#: addon\appModules\sr.py:308
+msgid "selection cleared."
+msgstr "Auswahl aufgehoben"
+
+#: addon\appModules\sr.py:311
+msgid "reset peak meter"
+msgstr "Aussteuerungsanzeige zurücksetzen"
+
+#: addon\appModules\sr.py:316
+msgid "peak reseted."
+msgstr "Aussteuerungsanzeige zurückgesetzt"
+
+#: addon\appModules\sr.py:319
 msgid "delete"
 msgstr "entfernen"
 
-#: addon\appModules\sr.py:258
+#: addon\appModules\sr.py:324
 msgid "deleted."
 msgstr "gelöscht"
 
-#: addon\appModules\sr.py:261
+#: addon\appModules\sr.py:327
+msgid "Go to top of file"
+msgstr "zum Anfang der Datei gehen"
+
+#: addon\appModules\sr.py:332
+msgid "Top of file."
+msgstr "Dateianfang"
+
+#: addon\appModules\sr.py:335
+msgid "Go to end of file"
+msgstr "zum Ende der Datei springen"
+
+#: addon\appModules\sr.py:340
+msgid "end of file."
+msgstr "Dateiende"
+
+#: addon\appModules\sr.py:344
 msgid "do not speak while using arrow keys"
 msgstr "keine Sprachausgabe für Pfeiltasten"
 
@@ -199,8 +243,11 @@ msgstr ""
 #. Brief changelog for this version
 #. Translators: what's new content for the add-on version to be shown in the add-on store
 #: buildVars.py:31
-msgid "Ready for NVDA 2026!"
-msgstr "Bereit für NVDA 2026!"
+msgid "Added an alternative keyboard layer, some minor bug fixes."
+msgstr "Alternativer Tastaturmodus hinzugefügt, kleine Verbesserungen."
+
+#~ msgid "Ready for NVDA 2026!"
+#~ msgstr "Bereit für NVDA 2026!"
 
 #~ msgid "s"
 #~ msgstr "a"

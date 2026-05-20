@@ -5,7 +5,7 @@ Marco Steinebach <studio@windyradio.de>
 
 ## Was ist "Studio Recorder"?
 
-"Studio Recorder", entwickelt von american printing house (APH), 
+"Studio Recorder", entwickelt vom american printing house (APH), 
 ist ein Programm zum Aufnehmen und Bearbeiten von Audio.
 Mehr zu diesem Programm, inklusive des Download-Links, 
 gibt es, auf englisch, [hier](https://www.aph.org/product/studio-recorder-software-digital-download/)
@@ -50,13 +50,6 @@ und alle anderen Einträge abzuwählen.
 
 ## zusätzliche Tastenkombinationen
 
-Anmerkung zu den Tastenkombinationen, welche nur aus
-einem Buchstaben bestehen, z.B. j.
-Wenn eine dieser Tastenkombinationen auch von "Studio Recorder"
-benutzt wird, drücken Sie die Taste zwei mal schnell,
-um die Funktion auszuführen, die vom "Studio Recorder" selbst
-bereitgestellt wurde.
-
 Die folgenden Tastenkombinationen werden vom addOn bereitgestellt:
 
 - STRG+ENTF:  
@@ -90,6 +83,8 @@ Die folgenden Tastenkombinationen werden vom addOn bereitgestellt:
     normalisieren.  
     Markiert das gesamte Dokument und führt die
     Normalisierung aus.
+- t:
+    Öffnet den Dialog um Stille vom Anfang und Ende der Datei zu entfernen.
 
 Alle Tastenkombinationen können im NVDA-Dialog
 Tastenbefehle geändert werden.
@@ -103,6 +98,25 @@ Wenn Sie sich mit den Pfeiltasten bewegen,
 erfolgt keine Sprachausgabe, um
 ungewollte Ausgaben während der Navigation im Dokument zu vermeiden.
 
+## alternative Tasten
+
+Wenn Sie beispielsweise viel mit Marken arbeiten, 
+wird die Taste "n" häufig zum Benennen einer Marke benötigt.
+Da "n" vom addOn zur Ausführung der Funktion "Normalisieren" genutzt wird,
+drücken Sie zunächst  
+NVDA+Leertaste  
+um den alternativen Modus zu aktivieren, und anschließend das "n",
+um die Marke zu benennen.
+Dieser Modus schaltet sich nach dem Drücken einer Taste wieder aus.
+Soll er dauerhaft aktiviert bleiben, drücken Sie  
+NVDA+Leertaste  
+zwei mal schnell hintereinander.
+Ausschalten können Sie diesen Modus jederzeit wieder durch drücken von  
+NVDA+Leertaste.
+
+So können Sie alle Tasten, die vom addOn mit anderen Funktionen belegt wurden, trotzdem schnell und einfach ausführen,
+ohne dauerhafte Änderungen vornehmen zu müssen.
+
 ## Kontakt
 
 Wenn Sie mich erreichen wollen können Sie dies über
@@ -112,6 +126,14 @@ tun oder mir eine Email an
 senden.
 
 ## Versionsgeschichte
+
+### V26.04:
+
+- Einführung des alternativen Tastatur-Layers
+
+- kleinere Programm-Korrekturen
+
+- Die Tasten "r" und "c" geben jetzt Sprachfeedback
 
 ### V26.03
 
