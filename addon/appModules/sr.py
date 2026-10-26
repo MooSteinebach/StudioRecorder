@@ -5,6 +5,8 @@ AddOn for studio recorder
 adds braille support and a few additional keystrokes
 to ease the use of SR.
 Copyright 2026 Marco Steinebach <studio@windyradio.de>
+V26.05:
+- ready for NVDA 2026.3
 V26.04:
 - added an alternative keyboard layer, NVDA+space
   If this layer is active, the original key is send to SR.
@@ -31,6 +33,7 @@ import config
 from NVDAObjects.IAccessible import IAccessible
 import tones
 import wx
+from config.configFlags import ShowMessages
 
 addonHandler.initTranslation()
 
@@ -49,7 +52,7 @@ def brailleMessage (msg):
 # sends a message to the braille display.
 # not really good style, but working!
   oldShowBrailleMessages = config.conf["braille"]["showMessages"]
-  config.conf["braille"]["showMessages"] = braille.ShowMessages.SHOW_INDEFINITELY
+  config.conf["braille"]["showMessages"] = ShowMessages.SHOW_INDEFINITELY
   braille.handler.message (msg)
   config.conf["braille"]["showMessages"] = oldShowBrailleMessages
 
